@@ -1,12 +1,12 @@
-console.log("hello", __dirname)
+const http = require('http')
 
-console.log( __dirname)  //папка, в которой ведем разработку
+const server = http.createServer((req, res)=>{
+ //console.log(req.url)
+  res.write('<h1>hello fron Node JS</h1>')
+  res.write('<h2>hello fron Node JS</h2>')
+  res.end()
+})
 
-console.log( __filename)  //абсолютный путь и файл, где мы ведем разработку
-
-const { getHello } = require('./user')
-const UserObj=require('./user')
-
-console.log(UserObj.user)
-
-console.log(getHello())
+server.listen(3000, ()=>{
+    console.log('server started')
+})
