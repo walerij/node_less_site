@@ -1,18 +1,39 @@
 const http = require('http')
 
+const fs = require('fs')
+const path = require('path')
+const { RSA_NO_PADDING } = require('constants')
+
 const server = http.createServer((req, res)=>{
   if(req.method==='GET')
   {
     res.writeHead(200,{
-      'Content-type':'text/html'
+      'Content-type':'text/html; charset=utf-8'
     })
-    res.end('<form method="POST" action="/" >'+
-    '   <input type="text" name="title" /> '+
-      '<button type="submit">SEND</button>   </form>'
 
-)
- 
-
+    if (req.url==="/")
+    {
+      console.log(path.join(__dirname,'views','index.html'))
+      fs.readFile(
+        path.join(__dirname,'views','index.html'),
+        'utf-8',
+        (err, content)=>{
+          if(err) {throw err}
+          res.end(content)
+        }
+        )
+    }
+    else if (req.url==='/about') {
+      fs.readFile(
+        path.join(__dirname,'views','about.html'),
+        'utf-8',
+        (err, content)=>{
+          if(err) throw err
+          res.end(content)
+        }
+        )
+    }
+   
   }
   else if(req.method==="POST")
   {

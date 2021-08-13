@@ -28,7 +28,7 @@ const path = require('path') //подключим путь
 }) */
 
 //чтение из файла
-/* fs.readFile(path.join(__dirname,"notes","my.txt"),(err, data)=>{
+ /*fs.readFile(path.join(__dirname,"notes","my.txt"),(err, data)=>{
     if(err) throw err
 
     console.log(Buffer.from(data).toString())
